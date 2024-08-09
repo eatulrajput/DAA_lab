@@ -18,22 +18,38 @@ int main() {
     scanf("%d", &n);
 
     int arr[n];
-    printf("Enter the numbers:\n ");
+    printf("Enter the numbers:\n");
     for (i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
 
-    count = 0;
+    // Finding total number of duplicate elements
+    int duplicateCount = 0;
+    int foundDuplicate;
     for (i = 0; i < n; i++) {
-        for (j = i + 1; j < n; j++) {
+        foundDuplicate = 0;
+        for (j = 0; j < i; j++) {
             if (arr[i] == arr[j]) {
-                count++;
+                foundDuplicate = 1;
                 break;
             }
         }
+        if (foundDuplicate) {
+            continue;
+        }
+        count = 0;
+        for (j = i + 1; j < n; j++) {
+            if (arr[i] == arr[j]) {
+                count++;
+            }
+        }
+        if (count > 0) {
+            duplicateCount++;
+        }
     }
-    printf("Total number of duplicate values = %d\n", count);
+    printf("Total number of duplicate values = %d\n", duplicateCount);
 
+    // Finding the most repeating element
     for (i = 0; i < n; i++) {
         count = 1;
         for (j = i + 1; j < n; j++) {
